@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>NoTube Playlist</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="../icons/icon32.png" alt="" width="22" height="22">
+      <span>NoTube Playlist</span>
+    </div>
+    <button id="open-options" class="icon-btn" title="Réglages" aria-label="Réglages">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </header>
+
+  <!-- État : une phrase claire -->
+  <section id="status" class="status idle">
+    <span class="dot" aria-hidden="true"></span>
+    <div class="status-text">
+      <div id="status-title" class="status-title">Prêt</div>
+      <div id="status-detail" class="status-detail"></div>
+    </div>
+  </section>
+
+  <!-- Titre en cours -->
+  <section id="now" class="now" hidden>
+    <div class="now-label">En cours</div>
+    <div id="now-title" class="now-title"></div>
+    <div id="now-step" class="now-step"></div>
+    <div class="mini-bar"><div id="now-bar"></div></div>
+  </section>
+
+  <!-- Progression de la file -->
+  <section id="progress" class="progress">
+    <div class="progress-head">
+      <span id="progress-count" class="progress-count">0 titre</span>
+      <span id="eta" class="eta"></span>
+    </div>
+    <div class="bar"><div id="bar-done"></div><div id="bar-error"></div></div>
+    <div class="legend">
+      <span><i class="sw done"></i><b id="c-done">0</b> terminés</span>
+      <span><i class="sw pending"></i><b id="c-pending">0</b> à faire</span>
+      <span><i class="sw error"></i><b id="c-error">0</b> erreurs</span>
+    </div>
+  </section>
+
+  <!-- Action principale : un seul bouton qui change selon la situation -->
+  <button id="main-action" class="btn primary big">Démarrer</button>
+
+  <!-- Ajout d'une playlist -->
+  <section class="add">
+    <button id="btn-fetch" class="btn outline">Ajouter la playlist de cet onglet</button>
+    <p id="fetch-hint" class="hint"></p>
+  </section>
+
+  <!-- Erreurs (repliées) -->
+  <details id="errors-box" class="errors-box" hidden>
+    <summary><span id="errors-summary">Erreurs</span></summary>
+    <ul id="errors" class="errors"></ul>
+    <div class="errors-actions">
+      <button id="btn-retry" class="btn small">Réessayer ces titres</button>
+      <button id="btn-export" class="btn small ghost">Exporter (.txt)</button>
+    </div>
+  </details>
+
+  <footer class="foot">
+    <button id="btn-clear" class="link danger">Vider la file</button>
+  </footer>
+
+  <script src="../lib/util.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

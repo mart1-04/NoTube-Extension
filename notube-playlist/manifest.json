@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "NoTube Playlist MP3 (usage personnel)",
+  "short_name": "NoTube Playlist",
+  "version": "1.0.0",
+  "description": "Envoie une à une les vidéos d'une playlist YouTube à noTube et télécharge l'audio en MP3. Usage personnel, mode développeur.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "storage",
+    "alarms",
+    "downloads",
+    "scripting",
+    "activeTab",
+    "notifications",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://*.notube.lol/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://notube.lol/*"],
+      "js": [
+        "config/notube-config.js",
+        "lib/log.js",
+        "lib/util.js",
+        "content/dom-helpers.js",
+        "content/notube-driver.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "NoTube Playlist",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
